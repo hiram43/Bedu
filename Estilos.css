@@ -1,20 +1,6 @@
-﻿
-Nav {
-    background-color: lightgray;
-    align-items: center;
-    height: 125px;
-
-    width: 100%;
-  
-    position: relative;
-    display: flex;
-    justify-content:center;
-}
-#Img {
+﻿#NavImg{
     width:125px;
-    
 }
-.Top {
-    margin-right: 50%;
-    justify-content:space-around
+body{
+    background-color:lightgray;
 }

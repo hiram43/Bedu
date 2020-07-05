@@ -1,0 +1,21 @@
+﻿
+Nav{
+    background-color: lightgray;
+    align-items: center;
+    height: 125px;
+    width: 100%;
+    display: flex;
+    
+    
+    
+}
+#Img {
+    width:125px;
+    margin-right:222%;
+    
+}
+
+div a{
+    margin: 15px;
+   
+}
