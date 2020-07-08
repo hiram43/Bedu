@@ -20,7 +20,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <img id="NavImg" src="Img/Logo.jpg" alt="Logo" />
             <ul class="navbar-nav mr-auto">
-              
+
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                 </li>
@@ -43,5 +43,48 @@
 
         </div>
     </nav>
+
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">second</th>
+                <th scope="col">Third</th>
+                <th scope="col">Fourht</th>
+                <th scope="col">Five</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr id="Num1">
+                <th scope="row">Numero</th>
+
+            </tr>
+            <tr id="Num2">
+                <th scope="row">Rellenado</th>
+
+            </tr>
+            <tr id="Num3">
+                <th scope="row">Funcion</th>
+
+            </tr>
+        </tbody>
+    </table>
+    <script>
+        //Usando Jquery para llenar una tabla mediante el DOM.
+        $(document).ready(function () {
+            var numero = [1, 2, 3, 4, 5];
+            var Rellenado = ["uno", "dos", "tres", "Cuatro", "Cinco"]
+            var funcion = [1.1, 1.2, 1.3, 1.4, 1.5,]
+            for (var i = 0; i< numero.length; i++) {
+                $("#Num1").append("<th>" + numero[i] + "</th>")
+                $("#Num2").append("<th>" + Rellenado[i] + "</th>")
+                $("#Num3").append("<th>" + funcion[i] + "</th>")
+            }
+
+
+        });
+
+    </script>
 </body>
 </html>
