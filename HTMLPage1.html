@@ -8,7 +8,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link href="Estilos.css" rel="stylesheet" />
     <!-- JS, Popper.js, and jQuery -->
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+ 
+
+    
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 </head>
@@ -74,14 +78,14 @@
         </div>
         <div class="row">
             <div class="col">
-                <form id="JsonEx">
+                <form id="JsonEx" action="#" method="post">
                     <div class="form-group">
                         <label for="Email">Direccion de correo</label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                        <input name="Email" type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
                     </div>
                     <div class="form-group">
                         <label for="Nacimiento">Sexo</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
+                        <select class="form-control" id="exampleFormControlSelect1" name="Sec">
                             <option value="Hombre">Hombre</option>
                             <option value="Mujer">Mujer</option>
                             <option value="Otro">Otro</option>
@@ -90,7 +94,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlSelect2">Example multiple select</label>
-                        <select multiple class="form-control" id="exampleFormControlSelect2">
+                        <select name="Exam" multiple class="form-control" id="exampleFormControlSelect2">
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
@@ -100,15 +104,16 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Example textarea</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <textarea name="Txtar" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                     </div>
+                    <button type="submit" id="Subm" class="btn btn-primary">Primary</button>
                 </form>
             </div>
         </div>
     </div>   
     
     
-    <button type="button" id="Subm" class="btn btn-primary">Primary</button>
+    
     <script>
         //Usando Jquery para llenar una tabla mediante el DOM.
         $(document).ready(function () {
@@ -120,8 +125,64 @@
                 $("#Num2").append("<th>" + Rellenado[i] + "</th>")
                 $("#Num3").append("<th>" + funcion[i] + "</th>")
             }
+            
+            $("#JsonEx").submit(function () {
+                var Json1 = $(this).formToJson()
+                console.log(Json1);
+                
+                return false;
+                
+            });
 
 
+
+
+
+
+
+
+            //Form to Json --->>>>>> //////
+            $.fn.formToJson = function () {
+                form = $(this);
+
+                var formArray = form.serializeArray();
+                var jsonOutput = {};
+
+                $.each(formArray, function (i, element) {
+                    var elemNameSplit = element['name'].split('[');
+                    var elemObjName = 'jsonOutput';
+
+                    $.each(elemNameSplit, function (nameKey, value) {
+                        if (nameKey != (elemNameSplit.length - 1)) {
+                            if (value.slice(value.length - 1) == ']') {
+                                if (value === ']') {
+                                    elemObjName = elemObjName + '[' + Object.keys(eval(elemObjName)).length + ']';
+                                } else {
+                                    elemObjName = elemObjName + '[' + value;
+                                }
+                            } else {
+                                elemObjName = elemObjName + '.' + value;
+                            }
+
+                            if (typeof eval(elemObjName) == 'undefined')
+                                eval(elemObjName + ' = {};');
+                        } else {
+                            if (value.slice(value.length - 1) == ']') {
+                                if (value === ']') {
+                                    eval(elemObjName + '[' + Object.keys(eval(elemObjName)).length + '] = \'' + element['value'].replace("'", "\\'") + '\';');
+                                } else {
+                                    eval(elemObjName + '[' + value + ' = \'' + element['value'].replace("'", "\\'") + '\';');
+                                }
+                            } else {
+                                eval(elemObjName + '.' + value + ' = \'' + element['value'].replace("'", "\\'") + '\';');
+                            }
+                        }
+                    });
+                });
+
+                return jsonOutput;
+            }
+            //End Form to Json----> /////////////////////////
         });
 
     </script>
