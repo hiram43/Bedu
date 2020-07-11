@@ -43,40 +43,79 @@
 
         </div>
     </nav>
+    <div class="container">
+        <div class="row">
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">second</th>
+                        <th scope="col">Third</th>
+                        <th scope="col">Fourht</th>
+                        <th scope="col">Five</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="Num1">
+                        <th scope="row">Numero</th>
 
-    <table class="table table-dark">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">second</th>
-                <th scope="col">Third</th>
-                <th scope="col">Fourht</th>
-                <th scope="col">Five</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr id="Num1">
-                <th scope="row">Numero</th>
+                    </tr>
+                    <tr id="Num2">
+                        <th scope="row">Rellenado</th>
 
-            </tr>
-            <tr id="Num2">
-                <th scope="row">Rellenado</th>
+                    </tr>
+                    <tr id="Num3">
+                        <th scope="row">Funcion</th>
 
-            </tr>
-            <tr id="Num3">
-                <th scope="row">Funcion</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <div class="col">
+                <form id="JsonEx">
+                    <div class="form-group">
+                        <label for="Email">Direccion de correo</label>
+                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="Nacimiento">Sexo</label>
+                        <select class="form-control" id="exampleFormControlSelect1">
+                            <option value="Hombre">Hombre</option>
+                            <option value="Mujer">Mujer</option>
+                            <option value="Otro">Otro</option>
 
-            </tr>
-        </tbody>
-    </table>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect2">Example multiple select</label>
+                        <select multiple class="form-control" id="exampleFormControlSelect2">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Example textarea</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>   
+    
+    
+    <button type="button" id="Subm" class="btn btn-primary">Primary</button>
     <script>
         //Usando Jquery para llenar una tabla mediante el DOM.
         $(document).ready(function () {
             var numero = [1, 2, 3, 4, 5];
             var Rellenado = ["uno", "dos", "tres", "Cuatro", "Cinco"]
             var funcion = [1.1, 1.2, 1.3, 1.4, 1.5,]
-            for (var i = 0; i< numero.length; i++) {
+            for (var i = 0; i < numero.length; i++) {
                 $("#Num1").append("<th>" + numero[i] + "</th>")
                 $("#Num2").append("<th>" + Rellenado[i] + "</th>")
                 $("#Num3").append("<th>" + funcion[i] + "</th>")
